@@ -5,8 +5,6 @@ Description: This program calculates the tax and tip based on the given
 data including price before tax, tax rate (in %), and tip rate (in %).
 """
 
-from decimal import *
-
 
 #This defines the function name that will be run.
 def tax_and_tip_calculator():
