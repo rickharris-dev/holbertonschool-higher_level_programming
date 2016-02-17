@@ -122,13 +122,3 @@ var options = {
     
 var req = https.request(options, success);
 req.end();
-
-var waiting = function(){
-    console.log(process.env.COUNT);
-    if(process.env.REQUESTS == process.env.COUNT){
-	var final_string = JSON.stringify(final_obj + '\n');
-	fs.writeFile('/tmp/38',final_string);
-	console.log("The file was saved!");
-	clearInterval(print_interval);
-    }
-}
