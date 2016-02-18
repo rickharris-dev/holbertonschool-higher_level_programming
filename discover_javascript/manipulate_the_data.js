@@ -1,6 +1,4 @@
 var https = require('https');
-var fs = require('fs');
-var map = Array.prototype.map;
 
 var options = {
     hostname: 'api.github.com',
@@ -11,33 +9,23 @@ var options = {
     }
 }
 
-    var success = function(stream){
+var combine = function streamToString(stream, cb) {
+    const chunks = [];
+    stream.on('data', (chunk) => {
+	    chunks.push(chunk);
+	});
+    stream.on('end', () => {
+	    cb(chunks.join(''));
+	});
+}
 
-	var log = function(element){
-	    var name = element['full_name'];
-	    return name;
-	}
-	    
-	var parse = function(jsonString){
-	    var map = Array.prototype.map;
-	    var data = JSON.parse(jsonString);
-	    var array = map.call(data['items'],log);
-	    array = array.join("\n");
-	    console.log(array);
-	}    
-
-	var combine = function streamToString(stream, cb) {
-	    const chunks = [];
-	    stream.on('data', (chunk) => {
-		    chunks.push(chunk);
-		});
-	    stream.on('end', () => {
-		    cb(chunks.join(''));
-		});
-	}
-
-	combine(stream,parse);
-    }
-    
-var req = https.request(options, success);
+var req = https.request(options, function(res){
+  combine(res,function(jsonString){
+    var data = JSON.parse(jsonString);
+    var array = data.items.map(function(project){
+      return project.full_name;
+    });
+    console.log(array.join("\n"));
+  });
+});
 req.end();
