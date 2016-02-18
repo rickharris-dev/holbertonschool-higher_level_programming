@@ -12,10 +12,7 @@ var options = {
 var req = https.request(options, function(res) {
 	var body = '';
 	res.on('data', function(chunk) {
-		body += chunk;
-	    });
-	res.on('end', function(){
-		console.log(body);
+	   process.stdout.write(chunk);
 	    });
 });
 req.end();
