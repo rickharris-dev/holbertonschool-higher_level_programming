@@ -10,26 +10,21 @@ var options = {
     }
 }
 
-    var success = function(stream){
+var combine = function streamToString(stream, cb) {
+    const chunks = [];
+    stream.on('data', (chunk) => {
+	    chunks.push(chunk);
+	});
+    stream.on('end', () => {
+	    cb(chunks.join(''));
+	});
+}
 
-	var write = function(jsonString){
-	    var file = "/tmp/38";
-	    fs.writeFile(file,jsonString);
-	    console.log("The file was saved!");
-	}
-
-	var combine = function streamToString(stream, cb) {
-	    const chunks = [];
-	    stream.on('data', (chunk) => {
-		    chunks.push(chunk);
-		});
-	    stream.on('end', () => {
-		    cb(chunks.join(''));
-		});
-	}
-
-	combine(stream,write);
-    }
-    
-var req = https.request(options, success);
+var req = https.request(options, function(res){
+  combine(res,function(jsonString){
+    var file = "/tmp/38";
+    fs.writeFile(file,jsonString);
+    console.log("The file was saved!");
+  });
+});
 req.end();
