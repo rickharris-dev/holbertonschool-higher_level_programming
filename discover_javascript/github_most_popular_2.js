@@ -9,25 +9,20 @@ var options = {
     }
 }
 
-    var success = function(stream){
+var combine = function streamToString(stream, cb) {
+    const chunks = [];
+    stream.on('data', (chunk) => {
+	    chunks.push(chunk);
+	});
+    stream.on('end', () => {
+	    cb(chunks.join(''));
+	});
+}
 
-	var print = function(jsonString){
-	    console.log(typeof jsonString);
-	    console.log(jsonString);
-	}
-
-	var combine = function streamToString(stream, cb) {
-	    const chunks = [];
-	    stream.on('data', (chunk) => {
-		    chunks.push(chunk);
-		});
-	    stream.on('end', () => {
-		    cb(chunks.join(''));
-		});
-	}
-
-	combine(stream,print);
-    }
-    
-var req = https.request(options, success);
+var req = https.request(options, function(res){
+  combine(res,function(jsonString){
+    console.log(typeof jsonString);
+    console.log(jsonString);
+  });
+});
 req.end();
