@@ -10,7 +10,6 @@ var options = {
 }
 
 var req = https.request(options, function(res) {
-	var body = '';
 	res.on('data', function(chunk) {
 	   process.stdout.write(chunk);
 	    });
