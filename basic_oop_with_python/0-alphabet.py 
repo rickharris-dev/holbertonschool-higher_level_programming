@@ -1,0 +1,8 @@
+''' Prints the alphabet in lower case letters '''
+i = 0;
+line = ''
+
+while (i < 26) :
+    line += chr(97 + i)
+    i += 1
+print line
