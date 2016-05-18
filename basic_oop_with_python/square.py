@@ -10,7 +10,7 @@ class Square():
         ''' Deletes the square '''
         pass
 
-    def __call__(self):
+    def __str__(self):
         ''' Returns the layout of the square to be printed '''
         if self.__side_length <= 0:
             return ''
