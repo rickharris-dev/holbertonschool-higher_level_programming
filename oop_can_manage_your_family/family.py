@@ -1,3 +1,5 @@
+import json
+
 class Person():
 
     def __init__(self, id, first_name, date_of_birth, genre, eyes_color):
@@ -31,6 +33,8 @@ class Person():
             raise Exception("eyes_color is not valid")
 
         self.last_name = None
+
+        self.is_married_to = 0
 
 
     def __del__(self):
@@ -129,7 +133,33 @@ class Person():
         else:
             return date[2] - self.__date_of_birth[2]
 
+    def json(self):
+        '''returns hash with id, eyes_color, genre, date_of_birth, first_name, last_name'''
+        json = {
+            'id': self.__id,
+            'eyes_color': self.__eyes_color,
+            'genre': self.__genre,
+            'date_of_birth': self.__date_of_birth,
+            'first_name': self.__first_name,
+            'last_name': self.last_name,
+            'is_married_to': self.is_married_to
+        }
+        return json
+
+    def load_from_json(self, json):
+        if not isinstance(json, dict):
+            raise Exception("json is not valid")
+        else:
+            self.__id = json['id']
+            self.__first_name = json['first_name']
+            self.__date_of_birth = json['date_of_birth']
+            self.__genre = json['genre']
+            self.__eyes_color = json['eyes_color']
+            self.last_name = json['last_name']
+            self.is_married_to = json['is_married_to']
+
 class Baby(Person):
+
     def can_run(self):
         return False
 
@@ -141,8 +171,21 @@ class Baby(Person):
 
     def can_vote(self):
         return False
+
+    def can_be_married(self):
+        return False
+
+    def is_married(self):
+        return False
+
+    def divorce(self, p):
+        raise Exception("Not currently married")
+
+    def just_married_with(self, p):
+        raise Exception("Can't be married")
 
 class Teenager(Person):
+
     def can_run(self):
         return True
 
@@ -154,8 +197,21 @@ class Teenager(Person):
 
     def can_vote(self):
         return False
+
+    def can_be_married(self):
+        return False
+
+    def is_married(self):
+        return False
+
+    def divorce(self, p):
+        raise Exception("Not currently married.")
+
+    def just_married_with(self, p):
+        raise Exception("Can't be married")
 
 class Adult(Person):
+
     def can_run(self):
         return True
 
@@ -167,8 +223,35 @@ class Adult(Person):
 
     def can_vote(self):
         return True
+
+    def can_be_married(self):
+        return True
+
+    def is_married(self):
+        if self.is_married_to != 0:
+            return True
+        return False
+
+    def divorce(self, p):
+        if self.is_married_to == p.id and self.id == p.is_married_to:
+            self.is_married_to = 0
+            p.is_married_to = 0
+        else:
+            raise Exception("Couple is not currently married.")
+
+    def just_married_with(self, p):
+        if self.is_married_to != 0 or p.is_married_to != 0:
+            raise Exception("Already married")
+        elif p.can_be_married() == False:
+            raise Exception("Can't be married")
+        else:
+            self.is_married_to = p.get_id()
+            p.is_married_to = self.get_id()
+            if p.get_genre() == 'Male':
+                self.last_name = p.last_name
 
 class Senior(Person):
+
     def can_run(self):
         return False
 
@@ -180,3 +263,58 @@ class Senior(Person):
 
     def can_vote(self):
         return True
+
+    def can_be_married(self):
+        return True
+
+    def is_married(self):
+        if self.is_married_to != 0:
+            return True
+        return False
+
+    def divorce(self, p):
+        if self.is_married_to == p.id and self.id == p.is_married_to:
+            self.is_married_to = 0
+            p.is_married_to = 0
+        else:
+            raise Exception("Couple is not currently married.")
+
+    def just_married_with(self, p):
+        if self.is_married_to != 0 or p.is_married_to != 0:
+            raise Exception("Already married")
+        elif p.can_be_married() == False:
+            raise Exception("Can't be married")
+        else:
+            self.is_married_to = p.get_id()
+            p.is_married_to = self.get_id()
+            if p.get_genre() == 'Male':
+                self.last_name = p.last_name
+
+def save_to_file(list, filename):
+    output = []
+    for person in list:
+        data = person.json()
+        data['type'] = person.__class__.__name__
+        output.append(data)
+    f = open(filename, 'w')
+    f.write(json.dumps(output))
+    f.close()
+
+def load_from_file(filename):
+    f = open(filename, 'r')
+    data = f.read()
+    data = json.loads(data)
+    family = list()
+    d = [0, 'new', [1,1,1], 'Male', 'Brown']
+    for person in data:
+        if person['type'] == 'Baby':
+            new = Baby(d[0], d[1], d[2], d[3], d[4])
+        elif person['type'] == 'Teenager':
+            new = Teenager(d[0], d[1], d[2], d[3], d[4])
+        elif person['type'] == 'Adult':
+            new = Adult(d[0], d[1], d[2], d[3], d[4])
+        elif person['type'] == 'Senior':
+            new = Senior(d[0], d[1], d[2], d[3], d[4])
+        new.load_from_json(person)
+        family.append(new)
+    f.close()
