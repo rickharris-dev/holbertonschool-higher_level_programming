@@ -1,8 +1,10 @@
 import json
 
 class Person():
+    '''Defines a Person class'''
 
     def __init__(self, id, first_name, date_of_birth, genre, eyes_color):
+        '''Initializes a Person class object'''
 
         self.EYES_COLORS = ["Blue", "Green", "Brown"]
         self.GENRES = ["Female", "Male"]
@@ -38,29 +40,37 @@ class Person():
 
 
     def __del__(self):
+        '''Deletes the given object'''
         pass
 
     def __str__(self):
+        '''Returns string providing first and last name if last is known'''
         if self.last_name:
             return self.__first_name + ' ' + self.last_name
         return self.__first_name
 
     def __lt__(self, other):
+        '''Compares if self is younger than other'''
         return self.age() < other.age()
 
     def __le__(self, other):
+        '''Compares if self is younger or the same age as other'''
         return self.age() <= other.age()
 
     def __eq__(self, other):
+        '''Compares if self is the same age as other'''
         return self.age() == other.age()
 
     def __ge__(self, other):
+        '''Compares if self is older or the same age as other'''
         return self.age() >= other.age()
 
     def __gt__(self, other):
+        '''Compares if self is older than other'''
         return self.age() > other.age()
 
     def __id(self, value):
+        '''Sets __id attribute if value is valid'''
         if not isinstance(value, int):
             raise
         elif value < 0:
@@ -69,6 +79,7 @@ class Person():
             self.__id = value
 
     def __first_name(self, value):
+        '''Sets __first_name attribute if value is valid'''
         if not isinstance(value, str):
             raise
         elif value == '':
@@ -77,6 +88,7 @@ class Person():
             self.__first_name = value
 
     def __date_of_birth(self, value):
+        '''Sets __date_of_birth attribute if value is valid'''
         if not len(value) == 3:
             print "Error 1"
             raise
@@ -93,6 +105,7 @@ class Person():
             self.__date_of_birth = value
 
     def __genre(self, value):
+        '''Sets __genre attribute if value is valid'''
         if not isinstance(value, str):
             raise
         elif not value in self.GENRES:
@@ -101,6 +114,7 @@ class Person():
             self.__genre = value
 
     def __eyes_color(self, value):
+        '''Sets __eyes_color attribute if value is valid'''
             if not isinstance(value, str):
                 raise
             elif not value in self.EYES_COLORS:
@@ -109,24 +123,31 @@ class Person():
                 self.__eyes_color = value
 
     def get_id(self):
+        '''Returns the __id attribute for the Person'''
         return self.__id
 
     def get_first_name(self):
+        '''Returns the __first_name attribute for the Person'''
         return self.__first_name
 
     def get_date_of_birth(self):
+        '''Returns the __date_of_birth attribute for the Person'''
         return self.__date_of_birth
 
     def get_genre(self):
+        '''Returns the __genre attribute for the Person'''
         return self.__genre
 
     def get_eyes_color(self):
+        '''Returns the __eyes_color attribute for the Person'''
         return self.__eyes_color
 
     def is_male(self):
+        '''Returns the True if the Person is male'''
         return self.__genre == 'Male'
 
     def age(self):
+        '''Returns age of Person based on date of 5/20/2016'''
         date = [5, 20, 2016]
         if self.__date_of_birth[0] > date[0]:
             return date[2] - self.__date_of_birth[2] - 1
@@ -136,7 +157,7 @@ class Person():
             return date[2] - self.__date_of_birth[2]
 
     def json(self):
-        '''returns hash with id, eyes_color, genre, date_of_birth, first_name, last_name'''
+        '''Returns hash with id, eyes_color, genre, date_of_birth, first_name, last_name'''
         json = {
             'id': self.__id,
             'eyes_color': self.__eyes_color,
@@ -149,6 +170,7 @@ class Person():
         return json
 
     def load_from_json(self, json):
+        '''Sets Person attributes based on loaded json data'''
         if not isinstance(json, dict):
             raise Exception("json is not valid")
         else:
@@ -161,98 +183,130 @@ class Person():
             self.is_married_to = json['is_married_to']
 
 class Baby(Person):
+    '''Defines a Baby class that inherits from the Person class'''
 
     def can_run(self):
+        '''Defines that a Baby cannot run'''
         return False
 
     def need_help(self):
+        '''Defines that a Baby needs help'''
         return True
 
     def is_young(self):
+        '''Defines that a Baby is young in age'''
         return True
 
     def can_vote(self):
+        '''Defines that a Baby cannot vote'''
         return False
 
     def can_be_married(self):
+        '''Defines that a Baby cannot be married'''
         return False
 
     def is_married(self):
+        '''Defines that a Baby is not married'''
         return False
 
     def divorce(self, p):
+        '''Defines that a Baby cannot divorce'''
         raise Exception("Not currently married")
 
     def just_married_with(self, p):
+        '''Defines that a Baby cannot be married'''
         raise Exception("Can't be married")
 
     def can_have_child(self):
+        '''Defines that a Baby cannot have a child'''
         return False
 
     def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        '''Defines that a Baby cannot have a child'''
         raise Exception("Can't have a child")
 
     def adopt_child(self, c):
+        '''Defines that  Baby cannot adopt a person'''
         raise Exception("Can't adopt a person")
 
 class Teenager(Person):
+    '''Defines a Teenager class that inherits from the Person class'''
 
     def can_run(self):
+        '''Defines that a Teenager can run'''
         return True
 
     def need_help(self):
+        '''Defines that a Teenager does not need help'''
         return False
 
     def is_young(self):
+        '''Defines that a Teenager is young'''
         return True
 
     def can_vote(self):
+        '''Defines that a Teenager cannot vote'''
         return False
 
     def can_be_married(self):
+        '''Defines that a Teenager cannot be married'''
         return False
 
     def is_married(self):
+        '''Defines that a Teenager is not married'''
         return False
 
     def divorce(self, p):
+        '''Defines that a Teenager cannot divorce'''
         raise Exception("Not currently married.")
 
     def just_married_with(self, p):
+        '''Defines that a Teenager cannot be married'''
         raise Exception("Can't be married")
 
     def can_have_child(self):
+        '''Defines that a Teenager cannot have a child'''
         return False
 
     def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        '''Defines that a Teenager cannot have a child'''
         raise Exception("Can't have a child")
 
     def adopt_child(self, c):
+        '''Defines that a Teenager cannot adopt a person'''
         raise Exception("Can't adopt a person")
 
 class Adult(Person):
+    '''Defines an Adult class that inherits from the Person class'''
 
     def can_run(self):
+        '''Defines that an Adult can run'''
         return True
 
     def need_help(self):
+        '''Defines that an Adult does not need help'''
         return False
 
     def is_young(self):
+        '''Defines that an Adult is not young'''
         return False
 
     def can_vote(self):
+        '''Defines that an Adult can vote'''
         return True
 
     def can_be_married(self):
+        '''Defines that an Adult can be married'''
         return True
 
     def is_married(self):
+        '''Returns True if an Adult is married'''
         if self.is_married_to != 0:
             return True
         return False
 
     def divorce(self, p):
+        '''Divorces two individuals if they are married'''
         if self.is_married_to == p.id and self.id == p.is_married_to:
             self.is_married_to = 0
             p.is_married_to = 0
@@ -260,6 +314,7 @@ class Adult(Person):
             raise Exception("Couple is not currently married.")
 
     def just_married_with(self, p):
+        '''Updates individuals to reflect marriage to one another'''
         if self.is_married_to != 0 or p.is_married_to != 0:
             raise Exception("Already married")
         elif p.can_be_married() == False:
@@ -271,9 +326,11 @@ class Adult(Person):
                 self.last_name = p.last_name
 
     def can_have_child(self):
+        '''Defines that an Adult can have a child'''
         return True
 
     def has_child_with(self, p, id, first_name, date_of_birth, genre, *eyes_color):
+        '''Creates a new Baby and links the child to parents'''
         if p.can_have_child() == False or p is None:
             raise Exception("Can't have a child")
         elif not isinstance(id, int) or id < 0:
@@ -306,34 +363,43 @@ class Adult(Person):
             return baby
 
     def adopt_child(self, c):
+        '''Links Person to Adult if the Person can be adopted'''
         if c.__class__.__name__ != 'Baby' and c.__class__.__name__ != 'Teenager':
             raise Exception("c can't be adopted")
         else:
             self.children.append(c.get_id())
 
 class Senior(Person):
+    '''Defines a Senior class that inherits from the Person class'''
 
     def can_run(self):
+        '''Defines that a Senior cannot run'''
         return False
 
     def need_help(self):
+        '''Defines that a Senior needs help'''
         return True
 
     def is_young(self):
+        '''Defines that a Senior is not young'''
         return False
 
     def can_vote(self):
+        '''Defines that a Senior can vote'''
         return True
 
     def can_be_married(self):
+        '''Defines that a Senior can be married'''
         return True
 
     def is_married(self):
+        '''Returns True if a Senior is married'''
         if self.is_married_to != 0:
             return True
         return False
 
     def divorce(self, p):
+        '''Divorces a Senior and partner if currently married'''
         if self.is_married_to == p.id and self.id == p.is_married_to:
             self.is_married_to = 0
             p.is_married_to = 0
@@ -341,6 +407,7 @@ class Senior(Person):
             raise Exception("Couple is not currently married.")
 
     def just_married_with(self, p):
+        '''Updates Senior and partner to reflect marriage'''
         if self.is_married_to != 0 or p.is_married_to != 0:
             raise Exception("Already married")
         elif p.can_be_married() == False:
@@ -352,15 +419,19 @@ class Senior(Person):
                 self.last_name = p.last_name
 
     def can_have_child(self):
+        '''Defines that a Senior cannot have a child'''
         return False
 
     def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        '''Defines that a Senior cannot have a child'''
         raise Exception("Can't have a child")
 
     def adopt_child(self, c):
+        '''Defines that a Senior cannot adopt a person'''
         raise Exception("Can't adopt a person")
 
 def save_to_file(list, filename):
+    '''Saves a list of Persons to the given file in json format'''
     output = []
     for person in list:
         data = person.json()
@@ -371,6 +442,7 @@ def save_to_file(list, filename):
     f.close()
 
 def load_from_file(filename):
+    '''Loads the saved Persons from the given file from json format'''
     f = open(filename, 'r')
     data = f.read()
     data = json.loads(data)
