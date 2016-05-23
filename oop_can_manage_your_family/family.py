@@ -33,8 +33,8 @@ class Person():
             raise Exception("eyes_color is not valid")
 
         self.last_name = None
-
         self.is_married_to = 0
+        self.children = []
 
 
     def __del__(self):
@@ -184,6 +184,15 @@ class Baby(Person):
     def just_married_with(self, p):
         raise Exception("Can't be married")
 
+    def can_have_child(self):
+        return False
+
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        raise Exception("Can't have a child")
+
+    def adopt_child(self, c):
+        raise Exception("Can't adopt a person")
+
 class Teenager(Person):
 
     def can_run(self):
@@ -209,6 +218,15 @@ class Teenager(Person):
 
     def just_married_with(self, p):
         raise Exception("Can't be married")
+
+    def can_have_child(self):
+        return False
+
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        raise Exception("Can't have a child")
+
+    def adopt_child(self, c):
+        raise Exception("Can't adopt a person")
 
 class Adult(Person):
 
@@ -250,6 +268,33 @@ class Adult(Person):
             if p.get_genre() == 'Male':
                 self.last_name = p.last_name
 
+    def can_have_child(self):
+        return True
+
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        if p.can_have_child() == False or p is None:
+            raise Exception("Can't have a child")
+        elif not isinstance(id, int) or id < 0:
+            raise Exception("id is not an integer")
+        elif not isinstance(first_name, str) or first_name == '':
+            raise Exception("string is not a string")
+        elif not all(isinstance(n, int) for n in date_of_birth) or len(date_of_birth) != 3:
+            raise Exception("date_of_birth is not a valid date")
+        elif not isinstance(genre, str) or not genre in self.GENRES:
+            raise Exception("genre is not valid")
+        elif not isinstance(eyes_color, str) or not eyes_color in self.EYES_COLORS:
+            raise Exception("eyes_color is not valid")
+        else:
+            baby = Baby(id, first_name, date_of_birth, genre, eyes_color)
+            p.children.append(baby.get_id())
+            self.children.append(baby.get_id())
+
+    def adopt_child(self, c):
+        if c.__class__.__name__ != 'Baby' and c.__class__.__name__ != 'Teenager':
+            raise Exception("c can't be adopted")
+        else:
+            self.children.append(c.get_id())
+
 class Senior(Person):
 
     def can_run(self):
@@ -290,6 +335,15 @@ class Senior(Person):
             if p.get_genre() == 'Male':
                 self.last_name = p.last_name
 
+    def can_have_child(self):
+        return False
+
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        raise Exception("Can't have a child")
+
+    def adopt_child(self, c):
+        raise Exception("Can't adopt a person")
+
 def save_to_file(list, filename):
     output = []
     for person in list:
@@ -318,3 +372,4 @@ def load_from_file(filename):
         new.load_from_json(person)
         family.append(new)
     f.close()
+    return family
