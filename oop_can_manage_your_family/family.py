@@ -41,7 +41,9 @@ class Person():
         pass
 
     def __str__(self):
-        return self.__first_name + ' ' + self.last_name
+        if self.last_name:
+            return self.__first_name + ' ' + self.last_name
+        return self.__first_name
 
     def __lt__(self, other):
         return self.age() < other.age()
@@ -271,7 +273,7 @@ class Adult(Person):
     def can_have_child(self):
         return True
 
-    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, *eyes_color):
         if p.can_have_child() == False or p is None:
             raise Exception("Can't have a child")
         elif not isinstance(id, int) or id < 0:
@@ -282,12 +284,26 @@ class Adult(Person):
             raise Exception("date_of_birth is not a valid date")
         elif not isinstance(genre, str) or not genre in self.GENRES:
             raise Exception("genre is not valid")
-        elif not isinstance(eyes_color, str) or not eyes_color in self.EYES_COLORS:
+        elif eyes_color and (not isinstance(eyes_color, str) or not eyes_color in self.EYES_COLORS):
             raise Exception("eyes_color is not valid")
         else:
+            if not eyes_color:
+                if self.get_eyes_color() == 'Blue' and p.get_eyes_color() == 'Blue':
+                    eyes_color = 'Blue'
+                elif self.get_eyes_color() == 'Green' and p.get_eyes_color() == 'Green':
+                    eyes_color = 'Green'
+                elif self.get_eyes_color() == 'Brown' and p.get_eyes_color() == 'Brown':
+                    eyes_color = 'Brown'
+                elif self.get_eyes_color() == 'Blue' and p.get_eyes_color() == 'Green':
+                    eyes_color = 'Blue'
+                elif self.get_eyes_color() == 'Blue' and p.get_eyes_color() == 'Brown':
+                    eyes_color = 'Brown'
+                elif self.get_eyes_color() == 'Green' and p.get_eyes_color() == 'Brown':
+                    eyes_color = 'Brown'
             baby = Baby(id, first_name, date_of_birth, genre, eyes_color)
             p.children.append(baby.get_id())
             self.children.append(baby.get_id())
+            return baby
 
     def adopt_child(self, c):
         if c.__class__.__name__ != 'Baby' and c.__class__.__name__ != 'Teenager':
