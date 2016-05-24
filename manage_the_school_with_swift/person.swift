@@ -13,3 +13,19 @@ class Person {
                 return self.first_name + " " + self.last_name
         }
 }
+
+protocol Classify {
+        func isStudent() -> Bool
+}
+
+class Student: Person, Classify {
+        func isStudent() -> Bool {
+                return false
+        }
+}
+
+class Mentor: Person, Classify {
+        func isStudent() -> Bool {
+                return true
+        }
+}
