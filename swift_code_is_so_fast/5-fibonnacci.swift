@@ -1,4 +1,5 @@
 // Function returns the fibonacci number at the given index
+
 func fibonacci(number: Int) -> (Int) {
         var i:Int = 2
         var a:Int = 1
