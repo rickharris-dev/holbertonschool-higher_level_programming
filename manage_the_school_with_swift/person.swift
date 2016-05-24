@@ -1,3 +1,10 @@
+enum Subject {
+        case Math
+        case English
+        case French
+        case History
+}
+
 class Person {
         var first_name: String
         var last_name: String
@@ -18,18 +25,34 @@ protocol Classify {
         func isStudent() -> Bool
 }
 
-enum Subject {
-        case Math, English, French, History
-}
-
 class Student: Person, Classify {
         func isStudent() -> Bool {
-                return false
+                return true
         }
 }
 
 class Mentor: Person, Classify {
+        let subject: Subject
+
+        init(first_name: String, last_name: String, age: Int, subject: Subject = Subject.Math) {
+                self.subject = subject
+                super.init(first_name:first_name, last_name:last_name, age:age)
+        }
+
         func isStudent() -> Bool {
-                return true
+                return false
+        }
+
+        func stringSubject() -> String {
+                switch (self.subject) {
+                        case .Math:
+                                return "Math"
+                        case .English:
+                                return "English"
+                        case .French:
+                                return "French"
+                        case .History:
+                                return "History"
+                }
         }
 }
