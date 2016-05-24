@@ -1,7 +1,7 @@
 class Person {
-        let first_name: String
-        let last_name: String
-        let age: Int
+        var first_name: String
+        var last_name: String
+        var age: Int
 
         init(first_name: String, last_name: String, age: Int) {
                 self.first_name = first_name
@@ -16,6 +16,10 @@ class Person {
 
 protocol Classify {
         func isStudent() -> Bool
+}
+
+enum Subject {
+        case Math, English, French, History
 }
 
 class Student: Person, Classify {
