@@ -80,4 +80,38 @@ class School {
                 }
                 return false
         }
+
+        func listStudents() -> [Person] {
+                var list: [Person] = []
+                for person in list_persons {
+                        if person is Student {
+                                list.append(person)
+                        }
+                }
+                list = list.sort {$0.age > $1.age}
+                return list
+        }
+
+        func listMentors() -> [Person] {
+                var list: [Person] = []
+                for person in list_persons {
+                        if person is Mentor {
+                                list.append(person)
+                        }
+                }
+                list = list.sort {$0.age > $1.age}
+                return list
+        }
+
+        func listMentorsBySubject(subject: Subject) -> [Person] {
+                var list: [Person] = []
+                for person in list_persons {
+                        let mentor = person as? Mentor
+                        if mentor != nil && mentor!.subject == subject {
+                                list.append(person)
+                        }
+                }
+                list = list.sort {$0.age > $1.age}
+                return list
+        }
 }
