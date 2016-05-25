@@ -5,6 +5,10 @@ enum Subject {
         case History
 }
 
+protocol Classify {
+        func isStudent() -> Bool
+}
+
 class Person {
         var first_name: String
         var last_name: String
@@ -19,10 +23,6 @@ class Person {
         func fullName() -> String {
                 return self.first_name + " " + self.last_name
         }
-}
-
-protocol Classify {
-        func isStudent() -> Bool
 }
 
 class Student: Person, Classify {
@@ -54,5 +54,30 @@ class Mentor: Person, Classify {
                         case .History:
                                 return "History"
                 }
+        }
+}
+
+class School {
+        var name: String
+        var list_persons: [Person] = []
+
+        init(name: String) {
+                self.name = name
+        }
+
+        func addStudent(p: Person) -> Bool {
+                if p is Student {
+                        list_persons.append(p)
+                        return true
+                }
+                return false
+        }
+
+        func addMentor(p: Person) -> Bool {
+                if p is Mentor {
+                        list_persons.append(p)
+                        return true
+                }
+                return false
         }
 }
