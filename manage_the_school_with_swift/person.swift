@@ -69,10 +69,10 @@ class Student: Person, Classify {
         }
 
         // Creates a new Exercise and adds to list of Exercises
-        func addNewNote(subject: Subject, note: Int) {
+        func addNewNote(subject: Subject, note: Int = 0) {
                 let new: Exercise = Exercise(subject:subject)
                 new.setNote(note)
-                list_exercises.append(new)
+                self.list_exercises.append(new)
         }
 }
 
