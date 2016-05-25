@@ -9,7 +9,7 @@ protocol Classify {
         func isStudent() -> Bool
 }
 
-class Person {
+class Person: CustomStringConvertible {
         var first_name: String
         var last_name: String
         var age: Int
@@ -22,6 +22,10 @@ class Person {
 
         func fullName() -> String {
                 return self.first_name + " " + self.last_name
+        }
+
+        var description:String {
+                return self.fullName()
         }
 }
 
@@ -113,5 +117,27 @@ class School {
                 }
                 list = list.sort {$0.age > $1.age}
                 return list
+        }
+
+        func mentorsAgeAverge() -> Int {
+                let list: [Person] = self.listMentors()
+                var total:Int = 0
+                var i:Int = 0
+                for person in list {
+                        total += person.age
+                        i += 1
+                }
+                return total / i
+        }
+
+        func studentsAgeAverge() -> Int {
+                let list: [Person] = self.listStudents()
+                var total:Int = 0
+                var i:Int = 0
+                for person in list {
+                        total += person.age
+                        i += 1
+                }
+                return total / i
         }
 }
