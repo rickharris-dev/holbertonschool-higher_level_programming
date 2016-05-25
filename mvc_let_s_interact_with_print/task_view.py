@@ -5,7 +5,6 @@ class TaskView:
     def __init__(self, master):
         if not isinstance(master, tk.Tk):
             raise Exception("master is not a tk.Tk()")
-        print "Moving on"
 
         self.__title_var = tk.StringVar()
         self.__title_label = tk.Label(master, textvariable=self.__title_var)
