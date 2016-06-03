@@ -1,0 +1,9 @@
+[
+	{"nb_doors": 5, "brand": "Nissan", "name": "Rogue"},
+	{"nb_doors": 3, "brand": "Nissan", "name": "Sentra"},
+	{"nb_doors": 5, "brand": "Toyota", "name": "Prius"},
+	{"nb_doors": 3, "brand": "Toyota", "name": "Yaris"},
+	{"nb_doors": 5, "brand": "Toyota", "name": "Corolla"},
+	{"nb_doors": 7, "brand": "Porsche", "name": "Cayenne"},
+	{"nb_doors": 3, "brand": "Mini", "name": "Cooper"}
+]

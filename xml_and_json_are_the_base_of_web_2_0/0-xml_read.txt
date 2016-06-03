@@ -1,0 +1,7 @@
+1) 2
+2) 4
+3) Red
+4) 39.95
+5) 4
+6) item_number
+7) color_swatch
