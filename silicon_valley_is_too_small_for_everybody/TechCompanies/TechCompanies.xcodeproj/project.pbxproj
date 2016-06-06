@@ -14,6 +14,7 @@
 		1DD44F7C1D05CC1300A5719B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD44F7A1D05CC1300A5719B /* LaunchScreen.storyboard */; };
 		1DD44F851D05CDEE00A5719B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD44F841D05CDEE00A5719B /* Entity.swift */; };
 		1DD44F871D05D02A00A5719B /* EntitiesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD44F861D05D02A00A5719B /* EntitiesHelper.swift */; };
+		1DD44F8A1D05DCDE00A5719B /* TechCompaniesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD44F891D05DCDE00A5719B /* TechCompaniesListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1DD44F7D1D05CC1300A5719B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DD44F841D05CDEE00A5719B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		1DD44F861D05D02A00A5719B /* EntitiesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitiesHelper.swift; sourceTree = "<group>"; };
+		1DD44F891D05DCDE00A5719B /* TechCompaniesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechCompaniesListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		1DD44F701D05CC1300A5719B /* TechCompanies */ = {
 			isa = PBXGroup;
 			children = (
+				1DD44F881D05DC9100A5719B /* ViewControllers */,
 				1DD44F831D05CDCA00A5719B /* Models */,
 				1DD44F711D05CC1300A5719B /* AppDelegate.swift */,
 				1DD44F731D05CC1300A5719B /* ViewController.swift */,
@@ -76,6 +79,14 @@
 				1DD44F861D05D02A00A5719B /* EntitiesHelper.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1DD44F881D05DC9100A5719B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1DD44F891D05DCDE00A5719B /* TechCompaniesListViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				1DD44F871D05D02A00A5719B /* EntitiesHelper.swift in Sources */,
 				1DD44F741D05CC1300A5719B /* ViewController.swift in Sources */,
 				1DD44F721D05CC1300A5719B /* AppDelegate.swift in Sources */,
+				1DD44F8A1D05DCDE00A5719B /* TechCompaniesListViewController.swift in Sources */,
 				1DD44F851D05CDEE00A5719B /* Entity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
