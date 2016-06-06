@@ -34,4 +34,12 @@ class Entity {
     func getEntityType() -> EntityType {
         return self.type
     }
+    
+    func getTown() -> String {
+        return self.town
+    }
+    
+    func getImageName() -> String {
+        return self.imageName
+    }
 }

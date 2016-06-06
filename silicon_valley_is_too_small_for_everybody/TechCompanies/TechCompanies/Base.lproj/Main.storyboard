@@ -5,6 +5,48 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
+        <!--Tech Company Detail View Controller-->
+        <scene sceneID="Kgy-sv-WUL">
+            <objects>
+                <viewController id="Cb2-1q-bEn" customClass="TechCompanyDetailViewController" customModule="TechCompanies" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yAK-TA-smJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="J0a-ru-155"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jhL-HG-tE2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qyq-d7-9vG">
+                                <rect key="frame" x="200" y="144" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="XDq-k4-wuF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-bs-KAo" userLabel="label_entity">
+                                <rect key="frame" x="279" y="84" width="42" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qyq-d7-9vG" firstAttribute="top" secondItem="Ye6-bs-KAo" secondAttribute="bottom" constant="20" id="0NR-W1-L4X"/>
+                            <constraint firstItem="Ye6-bs-KAo" firstAttribute="top" secondItem="yAK-TA-smJ" secondAttribute="bottom" constant="20" id="2WY-wj-nMt"/>
+                            <constraint firstItem="Ye6-bs-KAo" firstAttribute="centerX" secondItem="jhL-HG-tE2" secondAttribute="centerX" id="DU3-U5-a6N"/>
+                            <constraint firstItem="Qyq-d7-9vG" firstAttribute="centerX" secondItem="jhL-HG-tE2" secondAttribute="centerX" id="wuY-Z9-5ny"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image_entity" destination="Qyq-d7-9vG" id="qe6-hT-t5W"/>
+                        <outlet property="label_entity" destination="Ye6-bs-KAo" id="bNK-8J-jdY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-zS-zkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1393" y="432"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="9j1-np-yfb">
             <objects>
@@ -38,6 +80,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="techCell"/>
+                                <connections>
+                                    <segue destination="Cb2-1q-bEn" kind="show" identifier="techDetailSegue" id="Ksd-G8-3PZ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

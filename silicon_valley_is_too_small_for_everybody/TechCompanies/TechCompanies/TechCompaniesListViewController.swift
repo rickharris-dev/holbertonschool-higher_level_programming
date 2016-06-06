@@ -12,6 +12,7 @@ class TechCompaniesListViewController: UITableViewController {
     
     var schoolList:[Entity]!
     var techCompanyList:[Entity]!
+    let techDetailSegue = "techDetailSegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,22 @@ class TechCompaniesListViewController: UITableViewController {
         
 
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == self.techDetailSegue {
+            let detailView = segue.destinationViewController as! TechCompanyDetailViewController
+            if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+                print(indexPath.section)
+                if indexPath.section == 0 {
+                    detailView.entity = self.techCompanyList[indexPath.row]
+                } else if indexPath.section == 1 {
+                    detailView.entity = self.schoolList[indexPath.row]
+                }
+            } else {
+                detailView.entity = nil
+            }
+        }
     }
 
     /*
