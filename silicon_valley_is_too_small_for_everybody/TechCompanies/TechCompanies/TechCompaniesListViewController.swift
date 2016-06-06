@@ -9,10 +9,17 @@
 import UIKit
 
 class TechCompaniesListViewController: UITableViewController {
+    
+    var schoolList:[Entity]!
+    var techCompanyList:[Entity]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = "Entity list"
+        self.techCompanyList = EntitiesHelper.getTechCompanies()
+        self.schoolList = EntitiesHelper.getSchools()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,23 +36,50 @@ class TechCompaniesListViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return self.techCompanyList.count
+        } else if section == 1 {
+            return self.schoolList.count
+        }
         return 0
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch (section) {
+            case 0: return "Tech Companies"
+            case 1: return "Schools"
+            default: return ""
+        }
+    }
 
-    /*
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("techCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        if indexPath.section == 0 {
+            cell.textLabel?.text = self.techCompanyList[indexPath.row].getName()
+            if self.techCompanyList[indexPath.row].getEntityType() == EntityType.TechCompany {
+                cell.detailTextLabel?.text = "I love working"
+            } else if self.techCompanyList[indexPath.row].getEntityType() == EntityType.School {
+                cell.detailTextLabel?.text = "I love studying"
+            }
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = self.schoolList[indexPath.row].getName()
+            if self.schoolList[indexPath.row].getEntityType() == EntityType.TechCompany {
+                cell.detailTextLabel?.text = "I love working"
+            } else if self.schoolList[indexPath.row].getEntityType() == EntityType.School {
+                cell.detailTextLabel?.text = "I love studying"
+            }
+        }
+        
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

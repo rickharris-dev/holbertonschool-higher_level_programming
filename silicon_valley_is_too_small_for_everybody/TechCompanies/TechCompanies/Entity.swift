@@ -27,4 +27,11 @@ class Entity {
         self.type = type
     }
     
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getEntityType() -> EntityType {
+        return self.type
+    }
 }
