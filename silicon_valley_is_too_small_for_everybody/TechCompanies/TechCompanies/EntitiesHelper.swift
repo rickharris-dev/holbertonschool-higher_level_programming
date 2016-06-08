@@ -9,8 +9,16 @@
 import Foundation
 
 class EntitiesHelper {
+    // Type lists
     static var listOfSchool:[Entity]! = []
     static var listOfTechCompany:[Entity]! = []
+    
+    // Location lists
+    static var listOfSanFrancisco:[Entity]! = []
+    static var listOfMountainView:[Entity]! = []
+    static var listOfSunnyvale:[Entity]! = []
+    static var listOfCupertino:[Entity]! = []
+    
     
     static func getSchools() -> [Entity]! {
         if self.listOfSchool.count == 0 {
@@ -29,5 +37,64 @@ class EntitiesHelper {
             listOfTechCompany.append(Entity(name: "Twitter", town: "San Francisco", imageName: "twitter", type: .TechCompany))
         }
         return self.listOfTechCompany
+    }
+    
+    static func getSanFranciscoEntities() -> [Entity]! {
+        if self.listOfSanFrancisco.count == 0 {
+            self.sortByCity()
+        }
+        return self.listOfSanFrancisco
+    }
+    
+    static func getMountainViewEntities() -> [Entity]! {
+        if self.listOfMountainView.count == 0 {
+            self.sortByCity()
+        }
+        return self.listOfMountainView
+    }
+    
+    static func getSunnyvaleEntities() -> [Entity]! {
+        if self.listOfSunnyvale.count == 0 {
+            self.sortByCity()
+        }
+        return self.listOfSunnyvale
+    }
+    
+    static func getCupertinoEntities() -> [Entity]! {
+        if self.listOfCupertino.count == 0 {
+            self.sortByCity()
+        }
+        return self.listOfCupertino
+    }
+    
+    static func sortByCity() {
+        for entity in self.getTechCompanies() {
+            switch (entity.getTown()){
+            case "San Francisco":
+                self.listOfSanFrancisco.append(entity)
+            case "Mountain View":
+                self.listOfMountainView.append(entity)
+            case "Sunnyvale":
+                self.listOfSunnyvale.append(entity)
+            case "Cupertino":
+                self.listOfCupertino.append(entity)
+            default:
+                print(entity.getTown())
+            }
+        }
+        for entity in self.getSchools() {
+            switch (entity.getTown()){
+            case "San Francisco":
+                self.listOfSanFrancisco.append(entity)
+            case "Mountain View":
+                self.listOfMountainView.append(entity)
+            case "Sunnyvale":
+                self.listOfSunnyvale.append(entity)
+            case "Cupertino":
+                self.listOfCupertino.append(entity)
+            default:
+                print(entity.getTown())
+            }
+        }
     }
 }

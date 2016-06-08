@@ -90,7 +90,13 @@
                             <outlet property="delegate" destination="vNP-hL-TWC" id="V4R-Si-HnH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="E5S-6O-IlR"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="E5S-6O-IlR">
+                        <barButtonItem key="rightBarButtonItem" title="Toggle" id="iEL-8T-Oet">
+                            <connections>
+                                <action selector="changeSegmentation:" destination="vNP-hL-TWC" id="GYy-Hs-wHs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swe-a0-V0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
