@@ -8,6 +8,37 @@
 
 import UIKit
 
+
+class MyCell: UITableViewCell {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let cvf: CGRect = self.contentView.frame;
+        let top: Int = (Int(cvf.size.height)-30)/2
+        self.imageView!.frame = CGRectMake(10.0,
+            CGFloat(top),
+            30,
+            30);
+        self.imageView!.contentMode = UIViewContentMode.ScaleAspectFit;
+        
+        var frame: CGRect = CGRectMake(cvf.size.height + 10,
+            self.textLabel!.frame.origin.y,
+            cvf.size.width - cvf.size.height - 2*10,
+            self.textLabel!.frame.size.height);
+        self.textLabel!.frame = frame;
+        
+        frame = CGRectMake(cvf.size.height + 10,
+            self.detailTextLabel!.frame.origin.y,
+            cvf.size.width - cvf.size.height - 2*10,
+            self.detailTextLabel!.frame.size.height);
+        self.detailTextLabel!.frame = frame;
+        
+        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    
+        
+    }
+}
+
 class TechCompaniesListViewController: UITableViewController {
     
     var schoolList:[Entity]!
@@ -103,50 +134,30 @@ class TechCompaniesListViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("techCell", forIndexPath: indexPath)
+        var entity: Entity
 
         if indexPath.section == 0 && self.toggle == 0 {
-            cell.textLabel?.text = self.techCompanyList[indexPath.row].getName()
-            if self.techCompanyList[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.techCompanyList[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
+            entity = self.techCompanyList[indexPath.row]
         } else if indexPath.section == 1 && self.toggle == 0 {
-            cell.textLabel?.text = self.schoolList[indexPath.row].getName()
-            if self.schoolList[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.schoolList[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
+            entity = self.schoolList[indexPath.row]
         } else if indexPath.section == 0 && self.toggle == 1 {
-            cell.textLabel?.text = self.listSanFrancisco[indexPath.row].getName()
-            if self.listSanFrancisco[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.listSanFrancisco[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
+            entity = self.listSanFrancisco[indexPath.row]
         } else if indexPath.section == 1 && self.toggle == 1 {
-            cell.textLabel?.text = self.listMountainView[indexPath.row].getName()
-            if self.listMountainView[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.listMountainView[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
+            entity = self.listMountainView[indexPath.row]
         }else if indexPath.section == 2 && self.toggle == 1 {
-            cell.textLabel?.text = self.listSunnyvale[indexPath.row].getName()
-            if self.listSunnyvale[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.listSunnyvale[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
-        }else if indexPath.section == 3 && self.toggle == 1 {
-            cell.textLabel?.text = self.listCupertino[indexPath.row].getName()
-            if self.listCupertino[indexPath.row].getEntityType() == EntityType.TechCompany {
-                cell.detailTextLabel?.text = "I love working"
-            } else if self.listCupertino[indexPath.row].getEntityType() == EntityType.School {
-                cell.detailTextLabel?.text = "I love studying"
-            }
+            entity = self.listSunnyvale[indexPath.row]
+        }else {
+            entity = self.listCupertino[indexPath.row]
         }
+        cell.textLabel?.text = entity.getName()
+        if entity.getEntityType() == EntityType.TechCompany {
+            cell.detailTextLabel?.text = "I love working"
+        } else if entity.getEntityType() == EntityType.School {
+            cell.detailTextLabel?.text = "I love studying"
+        }
+
+        cell.imageView?.image = UIImage(named: entity.getImageName())
+        
         return cell
     }
     
