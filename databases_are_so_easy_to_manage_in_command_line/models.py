@@ -1,11 +1,13 @@
 import peewee
 
+''' Defines the chosen database and pragmas '''
 my_models_db = peewee.SqliteDatabase('my_models.db', pragmas=(
     ('foreign_keys', 1),
 ))
 
 
 class BaseModel(peewee.Model):
+    ''' Defines the basic information required for all classes '''
     id = peewee.PrimaryKeyField(unique = True)
 
     class Meta:
@@ -13,12 +15,14 @@ class BaseModel(peewee.Model):
         order_by = ('id', )
 
 class School(BaseModel):
+    ''' Defines the School class and table '''
     name = peewee.FixedCharField(max_length = 128, null = False)
 
     def __str__(self):
         return "School: " + self.name + " (" + str(self.id) + ")"
 
 class Batch(BaseModel):
+    ''' Defines the Batch class and table and key relationship to school '''
     school = peewee.ForeignKeyField(rel_model = School, related_name = 'batches', on_delete = 'cascade')
     name = peewee.FixedCharField(max_length = 128, null = False)
 
@@ -26,6 +30,7 @@ class Batch(BaseModel):
         return "Batch: " + self.name + " (" + str(self.id) + ")"
 
 class User(BaseModel):
+    ''' Defines the User class and table '''
     first_name = peewee.FixedCharField(max_length = 128, default = "")
     last_name = peewee.FixedCharField(max_length = 128, null = False)
     age = peewee.IntegerField(null = False)
@@ -34,6 +39,7 @@ class User(BaseModel):
         return "User: " + self.first_name + " " + self.last_name + " (" + str(self.id) + ")"
 
 class Student(User):
+    ''' Defines the Student class and foreign key relationship to User '''
     batch = peewee.ForeignKeyField(rel_model = Batch, related_name = 'students', on_delete = 'cascade')
 
     def __str__(self):
