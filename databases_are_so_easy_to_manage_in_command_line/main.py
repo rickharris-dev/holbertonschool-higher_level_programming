@@ -2,13 +2,12 @@ from sys import argv
 from models import *
 
 def create_tables():
+    ''' Function connects to database and created all tables'''
     my_models_db.connect()
     my_models_db.create_tables([School, Batch, User, Student])
 
 def print_table():
-    '''the second argument of your program should be the model name in lowercase'''
-    '''your program should fetch from the DB all models depending of the value of'''
-    '''the second argument and print the list one object by line'''
+    ''' Function prints each row of the given table '''
     if len(argv) == 3:
         if argv[2] == "school":
             rows = School.select()
@@ -28,6 +27,7 @@ def print_table():
                 print row
 
 def insert_record():
+    ''' Inserts a new record into the given table with the give data '''
     try:
         with my_models_db.transaction():
             if argv[2] == "school":
@@ -60,10 +60,7 @@ def insert_record():
         flash('That username is already taken')
 
 def delete_tables():
-    # the second argument of your program should be the model name in lowercase
-    # the third arguments should be the id of the object to delete
-    # if in your database you don't have any object with this id, your program should print Nothing to delete
-    # otherwise, the object will be deleted and your program should print Delete: <object to delete>
+    '''Deletes the given record from the given table '''
     if argv[2] == "school":
         query = School.select().where(Schools.id == argv[3])
         if query.exists():
