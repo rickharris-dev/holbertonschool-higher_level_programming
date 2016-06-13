@@ -86,17 +86,139 @@ def delete_tables():
         else:
             print "Nothing to delete"
 
-''' Prints the action or prints error '''
+def print_batch_by_school():
+    ''' Prints the batch based on the given school '''
+    query = (School
+             .select()
+             .where(School.id == argv[2]))
+    if query.exists():
+        data = (Batch
+                .select()
+                .where(Batch.school == argv[2]))
+        for batch in data:
+            print batch
+    else:
+        print "School not found"
+
+def print_student_by_batch():
+    ''' Prints students by the given batch '''
+    query = (Batch
+             .select()
+             .where(Batch.id == argv[2]))
+    if query.exists():
+        data = (Student
+                .select()
+                .where(Student.batch == argv[2]))
+        for student in data:
+            print student
+    else:
+        print "Batch not found"
+
+def print_student_by_school():
+    ''' Prints students attending the given school '''
+    query = (School
+            .select()
+            .where(School.id == argv[2]))
+    if query.exists():
+        data = (Student
+                .select()
+                .join(Batch)
+                .where(Batch.school == argv[2]))
+        for student in data:
+            print student
+    else:
+        print "School not found"
+
+def print_family():
+    ''' Prints students by last name '''
+    query = (Student
+             .select()
+             .where(Student.last_name == argv[2]))
+    for student in query:
+        print student
+
+def age_average():
+    ''' Prints the average age of all students or by batch '''
+    if len(argv) == 3:
+        query = (Student
+                 .select(
+                     peewee.fn.Avg(Student.age)
+                     .alias('age_avg'))
+                 .where(Student.batch == argv[2])).get()
+        print query.age_avg
+    else:
+        query = (Student
+                 .select(
+                     peewee.fn.Avg(Student.age)
+                     .alias('age_avg'))).get()
+        print query.age_avg
+
+def change_batch():
+    ''' Moves student to a new batch '''
+    student = (Student
+               .select()
+               .where(Student.id == argv[2]))
+    batch = (Batch
+             .select()
+             .where(Batch.id == argv[3]))
+
+    if student.exists():
+        student = student.get()
+        if batch.exists():
+            batch = batch.get()
+            print student.batch.id
+            if student.batch != batch:
+                student.batch = batch
+                student.save()
+                print str(student) + " has been moved to " + str(batch)
+            else:
+                print str(student) + " already in " + str(batch)
+        else:
+            print "Batch not found"
+    else:
+        print "Student not found"
+
+def print_all():
+    ''' Prints all Students by batch and School '''
+    schools = School.select()
+    batches = (Batch
+               .select()
+               .join(School))
+    students = (Student.select()
+                .join(Batch))
+    for school in schools:
+        print school
+        school_batches = batches.where(School.id == school.id)
+        for batch in school_batches:
+            print '\t' + str(batch)
+            batch_students = students.where(Batch.id == batch.id)
+            for student in batch_students:
+                print '\t\t' + str(student)
+
+''' Initializes the action or prints error '''
 if len(argv) < 2:
     print "Please enter an action"
 elif argv[1] == "create":
     create_tables()
-    print "create"
 elif argv[1] == "print":
     print_table()
 elif argv[1] == "insert":
     insert_record()
 elif argv[1] == "delete":
     delete_tables()
+elif argv[1] == "print_batch_by_school":
+    print_batch_by_school()
+elif argv[1] == "print_student_by_batch":
+    print_student_by_batch()
+elif argv[1] == "print_student_by_school":
+    print_student_by_school()
+elif argv[1] == "print_family":
+    print_family()
+elif argv[1] == "age_average":
+    age_average()
+elif argv[1] == "change_batch":
+    change_batch()
+elif argv[1] == "print_all":
+    print_all()
 else:
     print "Undefined action " + argv[1]
