@@ -48,3 +48,13 @@ class Student(User):
         else:
             name = self.first_name + " " + self.last_name
         return "Student: " + name + " (" + str(self.id) + ") part of the batch: " + str(self.batch)
+
+class Exercise(BaseModel):
+    ''' Defines the Excercise class with foreign key relationship to Student '''
+    SUBJECTS = [('math', "Math"), ('english', "English"), ('history', "History"), ('c_prog', "C prog"), ('swift_prog', "Swift prog")]
+    student = peewee.ForeignKeyField(rel_model = Student, related_name = 'exercises', on_delete = 'cascade')
+    subject = peewee.FixedCharField(max_length = 128, choices = SUBJECTS)
+    note = peewee.IntegerField(default = 0)
+
+    def __str__(self):
+        return "Exercise: " + str(self.student) + " has " + str(self.note) + " in " + self.subject + " (" + str(self.id) + ")"
