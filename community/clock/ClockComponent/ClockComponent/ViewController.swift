@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     // Developer Configurations
     var size: CGFloat = 200  // Width in pixels
     var clockType: String = "digital" // digital or analog
-    var clockPrecision: String = "minute" // minute or second
+    var clockPrecision: String = "second" // minute or second
     
     
     // Clock UI connections
@@ -256,7 +256,7 @@ class ViewController: UIViewController {
         var nowHour = components.hour
         let nowMinutes = components.minute
         let nowSeconds = components.second
-        let nowEra = components.era
+        var nowPeriod = 0
     
         if clockType == "analog" {
             // Converts degree to radians to properly rotate layers
@@ -292,6 +292,11 @@ class ViewController: UIViewController {
             // Converts military time to 12-hour clock if needed
             if nowHour > 12 {
                 nowHour = nowHour - 12
+                nowPeriod = 1
+            } else if nowHour == 12 {
+                nowPeriod = 1
+            } else if nowHour == 0 {
+                nowHour = 12
             }
             
             // Obtains each digit in the time
@@ -307,7 +312,7 @@ class ViewController: UIViewController {
             setClockValue(self.hourDigit, value: hourDigitValue, type: "digit")
             setClockValue(self.minuteTen, value: minuteTenValue, type: "digit")
             setClockValue(self.minuteDigit, value: minuteDigitValue, type: "digit")
-            setClockValue(self.ampm, value: nowEra, type: "era")
+            setClockValue(self.ampm, value: nowPeriod, type: "era")
             if clockPrecision == "second" {
                 // Only updates seconds if precision is second
                 setClockValue(self.secondTen, value: secondTenValue, type: "digit")
