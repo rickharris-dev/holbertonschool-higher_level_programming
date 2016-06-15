@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ClockComponent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Nx-8d-yQ8">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4tF-Kh-pYY">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="slW-SM-wbF"/>
+                                            <constraint firstAttribute="height" constant="300" id="zLc-0S-0Bq"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7WI-qD-cuf">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="4Di-R2-t18"/>
+                                            <constraint firstAttribute="width" constant="300" id="4vl-Kh-4eK"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1We-nJ-e3i">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="3kP-yq-oDl"/>
+                                            <constraint firstAttribute="height" constant="300" id="WdQ-XR-sUE"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="2OF-28-cvD"/>
+                                    <constraint firstAttribute="height" constant="300" id="DEH-Eq-5ME"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k3r-9f-Ly7">
+                                <rect key="frame" x="50" y="179" width="500" height="241"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nine" translatesAutoresizingMaskIntoConstraints="NO" id="JND-k9-eYm">
+                                        <rect key="frame" x="96" y="37" width="84" height="127"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JND-k9-eYm" secondAttribute="height" multiplier="84:127" id="0WK-kG-VyS"/>
+                                            <constraint firstAttribute="width" constant="84" id="QXf-Vg-oh3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="Ute-Td-kEe">
+                                        <rect key="frame" x="266" y="36" width="84" height="127"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="84" id="aOY-W7-UmS"/>
+                                            <constraint firstAttribute="width" secondItem="Ute-Td-kEe" secondAttribute="height" multiplier="84:127" id="pwj-T9-jLx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="qhU-mL-k1c">
+                                        <rect key="frame" x="389" y="37" width="84" height="127"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="84" id="8Mr-qj-wH1"/>
+                                            <constraint firstAttribute="width" secondItem="qhU-mL-k1c" secondAttribute="height" multiplier="84:127" id="gCI-o3-hl1"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="3jh-KH-YRa">
+                                        <rect key="frame" x="430" y="176" width="25" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="C1C-6D-Z91"/>
+                                            <constraint firstAttribute="width" secondItem="3jh-KH-YRa" secondAttribute="height" multiplier="25:38" id="mub-kr-fjS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="sIH-pj-bip">
+                                        <rect key="frame" x="397" y="176" width="25" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="5Wk-bW-wZc"/>
+                                            <constraint firstAttribute="width" secondItem="sIH-pj-bip" secondAttribute="height" multiplier="25:38" id="cEm-8G-VDZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="am" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-XE-cZ7">
+                                        <rect key="frame" x="296" y="189" width="75" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hrW-XE-cZ7" secondAttribute="height" multiplier="3:1" id="iGO-bx-ehB"/>
+                                            <constraint firstAttribute="width" constant="75" id="qLF-Qz-6OF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="digital_clock" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-jY-KSM">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="241"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Bvd-jY-KSM" secondAttribute="height" multiplier="500:241" id="Uc8-Ht-UXZ"/>
+                                            <constraint firstAttribute="width" constant="500" id="pk5-bT-NyU"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hrW-XE-cZ7" firstAttribute="top" secondItem="Ute-Td-kEe" secondAttribute="bottom" constant="26" id="28i-ZW-3dI"/>
+                                    <constraint firstAttribute="width" constant="500" id="7lB-lo-v5v"/>
+                                    <constraint firstItem="sIH-pj-bip" firstAttribute="top" secondItem="qhU-mL-k1c" secondAttribute="bottom" constant="12" id="9pI-21-vQz"/>
+                                    <constraint firstItem="qhU-mL-k1c" firstAttribute="leading" secondItem="Ute-Td-kEe" secondAttribute="trailing" constant="39" id="Hxj-rE-Dox"/>
+                                    <constraint firstItem="Ute-Td-kEe" firstAttribute="top" secondItem="k3r-9f-Ly7" secondAttribute="top" constant="36" id="PwE-z3-nxA"/>
+                                    <constraint firstItem="3jh-KH-YRa" firstAttribute="leading" secondItem="sIH-pj-bip" secondAttribute="trailing" constant="8" id="S5x-BU-AMu"/>
+                                    <constraint firstItem="Ute-Td-kEe" firstAttribute="leading" secondItem="JND-k9-eYm" secondAttribute="trailing" constant="86" id="UsA-wh-H58"/>
+                                    <constraint firstItem="sIH-pj-bip" firstAttribute="leading" secondItem="hrW-XE-cZ7" secondAttribute="trailing" constant="26" id="fyY-gA-LHf"/>
+                                    <constraint firstItem="3jh-KH-YRa" firstAttribute="top" secondItem="qhU-mL-k1c" secondAttribute="bottom" constant="12" id="lqO-gI-kWl"/>
+                                    <constraint firstAttribute="width" secondItem="k3r-9f-Ly7" secondAttribute="height" multiplier="500:241" id="lwf-mo-nfS"/>
+                                    <constraint firstItem="JND-k9-eYm" firstAttribute="leading" secondItem="k3r-9f-Ly7" secondAttribute="leading" constant="96" id="nJL-cz-1LT"/>
+                                    <constraint firstItem="hrW-XE-cZ7" firstAttribute="leading" secondItem="k3r-9f-Ly7" secondAttribute="leading" constant="296" id="tTe-Tl-Ps6"/>
+                                    <constraint firstItem="qhU-mL-k1c" firstAttribute="top" secondItem="k3r-9f-Ly7" secondAttribute="top" constant="37" id="vzn-nc-jp8"/>
+                                    <constraint firstItem="JND-k9-eYm" firstAttribute="top" secondItem="k3r-9f-Ly7" secondAttribute="top" constant="37" id="wAZ-ax-Sfi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Nx-8d-yQ8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="130" id="SlX-tB-ff8"/>
+                            <constraint firstItem="k3r-9f-Ly7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XMd-hn-Dn5"/>
+                            <constraint firstItem="0Nx-8d-yQ8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="130" id="XVK-VX-g5N"/>
+                            <constraint firstItem="k3r-9f-Ly7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kIW-aY-gQi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ampm" destination="hrW-XE-cZ7" id="GFL-3v-d3f"/>
+                        <outlet property="ampmWidth" destination="qLF-Qz-6OF" id="ARs-4Y-aFE"/>
+                        <outlet property="analogView" destination="8bC-Xf-vdC" id="eYg-FQ-y09"/>
+                        <outlet property="clockFace" destination="0Nx-8d-yQ8" id="obX-RZ-rgb"/>
+                        <outlet property="clockHeight" destination="DEH-Eq-5ME" id="52r-hU-eSx"/>
+                        <outlet property="clockLeft" destination="XVK-VX-g5N" id="vjt-QE-dPc"/>
+                        <outlet property="clockTop" destination="SlX-tB-ff8" id="r2d-ap-JNN"/>
+                        <outlet property="clockWidth" destination="2OF-28-cvD" id="qCI-Xi-jRQ"/>
+                        <outlet property="digitalBack" destination="Bvd-jY-KSM" id="yvW-GS-g9v"/>
+                        <outlet property="digitalBackWidth" destination="pk5-bT-NyU" id="N0e-Dv-LKj"/>
+                        <outlet property="digitalClock" destination="k3r-9f-Ly7" id="G9w-YI-nkO"/>
+                        <outlet property="digitalWidth" destination="7lB-lo-v5v" id="6iX-SU-OzJ"/>
+                        <outlet property="hourDigit" destination="JND-k9-eYm" id="NJz-TZ-7MU"/>
+                        <outlet property="hourDigitWidth" destination="QXf-Vg-oh3" id="fMe-1p-H2M"/>
+                        <outlet property="hourHand" destination="4tF-Kh-pYY" id="U87-yM-Vbd"/>
+                        <outlet property="hourHeight" destination="zLc-0S-0Bq" id="VgM-9W-FgT"/>
+                        <outlet property="hourWidth" destination="slW-SM-wbF" id="ehT-NV-7I6"/>
+                        <outlet property="minuteDigit" destination="qhU-mL-k1c" id="cQe-qV-blJ"/>
+                        <outlet property="minuteDigitWidth" destination="8Mr-qj-wH1" id="pXE-TV-yvX"/>
+                        <outlet property="minuteHand" destination="7WI-qD-cuf" id="Dvc-Oj-Don"/>
+                        <outlet property="minuteHeight" destination="4Di-R2-t18" id="9L7-H7-A2f"/>
+                        <outlet property="minuteTen" destination="Ute-Td-kEe" id="GSC-h5-bqD"/>
+                        <outlet property="minuteTenWidth" destination="aOY-W7-UmS" id="joI-Eb-mvB"/>
+                        <outlet property="minuteWidth" destination="4vl-Kh-4eK" id="dao-Af-vWj"/>
+                        <outlet property="secondDigit" destination="3jh-KH-YRa" id="mcs-U2-WXb"/>
+                        <outlet property="secondDigitWidth" destination="C1C-6D-Z91" id="uj1-rh-tgD"/>
+                        <outlet property="secondHand" destination="1We-nJ-e3i" id="7Ts-0C-Sg8"/>
+                        <outlet property="secondHeight" destination="WdQ-XR-sUE" id="bYH-q6-FLP"/>
+                        <outlet property="secondTen" destination="sIH-pj-bip" id="0pB-xx-xGG"/>
+                        <outlet property="secondTenWidth" destination="5Wk-bW-wZc" id="s5g-ks-fik"/>
+                        <outlet property="secondWidth" destination="3kP-yq-oDl" id="kiQ-jY-yY3"/>
+                        <outlet property="x1" destination="nJL-cz-1LT" id="Fkm-ed-cYJ"/>
+                        <outlet property="x2" destination="UsA-wh-H58" id="puh-g8-Gc6"/>
+                        <outlet property="x3" destination="tTe-Tl-Ps6" id="qds-3w-KcU"/>
+                        <outlet property="x4" destination="Hxj-rE-Dox" id="oaC-BE-qR2"/>
+                        <outlet property="x5" destination="fyY-gA-LHf" id="23I-fw-rcY"/>
+                        <outlet property="x6" destination="S5x-BU-AMu" id="UDE-Xk-cma"/>
+                        <outlet property="y1" destination="wAZ-ax-Sfi" id="F5x-g5-2Gz"/>
+                        <outlet property="y2" destination="PwE-z3-nxA" id="n2v-tB-qaN"/>
+                        <outlet property="y3" destination="28i-ZW-3dI" id="dHu-E4-6t6"/>
+                        <outlet property="y4" destination="vzn-nc-jp8" id="jhf-hu-8Pl"/>
+                        <outlet property="y5" destination="9pI-21-vQz" id="RZt-D7-GfM"/>
+                        <outlet property="y6" destination="lqO-gI-kWl" id="W4G-Af-KpX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="385"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="am" width="151" height="51"/>
+        <image name="digital_clock" width="1000" height="482"/>
+        <image name="nine" width="168" height="254"/>
+        <image name="one" width="168" height="254"/>
+    </resources>
+</document>
